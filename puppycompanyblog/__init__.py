@@ -4,11 +4,15 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from dotenv import load_dotenv
+from pathlib import Path
 
+dotenv_path = Path('../.env')
+load_dotenv(dotenv_path=dotenv_path)
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'mysecret'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 ############################
