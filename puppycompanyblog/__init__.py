@@ -7,17 +7,15 @@ from flask_login import LoginManager
 from dotenv import load_dotenv
 from pathlib import Path
 
-dotenv_path = Path('../.env')
-load_dotenv(dotenv_path=dotenv_path)
-
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
 ############################
 ### DATABASE SETUP ##########
 ########################
 basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(dotenv_path=os.path.join(basedir,".env"))
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'data.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
