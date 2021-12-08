@@ -11,7 +11,7 @@ dotenv_path = Path('../.env')
 load_dotenv(dotenv_path=dotenv_path)
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SECRET_KEY'] = "mysecret"
 
 
 ############################
