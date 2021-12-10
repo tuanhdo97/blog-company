@@ -16,7 +16,9 @@ app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
 load_dotenv(dotenv_path=os.path.join(basedir, ".env"))
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL?sslmode=require').replace('postgres://', 'postgresql://')
+uri = os.getenv("DATABASE_URL")
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://", 1)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
